@@ -1,0 +1,17 @@
+Time = 0.05
+Total Cost (Obj value) = 1285.0
+Solver Status is = ok
+Termination Condition is = optimal
+ 
+From Supply Center  1
+---->to demand center  1  flows  50.0  and related cost is =  250.0
+---->to demand center  2  flows  55.0  and related cost is =  110.0
+---->to demand center  3  flows  45.0  and related cost is =  135.0
+ 
+From Supply Center  2
+---->to demand center  2  flows  20.0  and related cost is =  20.0
+ 
+From Supply Center  3
+---->to demand center  1  flows  85.0  and related cost is =  680.0
+---->to demand center  4  flows  45.0  and related cost is =  90.0
+ 
