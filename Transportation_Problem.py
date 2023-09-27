@@ -6,7 +6,7 @@ from pyomo.environ import *
 from pyomo.opt import SolverFactory
 
 #Parameters
-S = np.array([150, 20, 130]) # 
+S = np.array([150, 20, 130]) # S_i
 
 Total_Supply = sum(S)
 
@@ -48,7 +48,7 @@ for j in range_j:
     
 # Define Objective Function
 model.obj = pyo.Objective(expr = sum(x[i,j]*c[i][j] for i in range_i for j in range_j), 
-                          sense = minimize)       
+                          sense = minimize)
     
 begin = time.time()
 opt = SolverFactory('cplex')
@@ -76,6 +76,14 @@ if Feasibility_Condition == True: # if feasibility conditon holds
                 if pyo.value(x[i,j]) != 0:
                       print("---->to demand center " , j+1 , " flows " ,pyo.value(x[i,j]) , " and related cost is = " , pyo.value(x[i,j])*c[i][j])
             print(' ')              
+    elif (results.solver.termination_condition == TerminationCondition.infeasible):
+       print('Model is unfeasible')
+      #print('Solver Status is =', results.solver.status)
+       print('Termination Condition is =', results.solver.termination_condition)
+    else:
+        # Something else is wrong
+        print ('Solver Status: ',  result.solver.status)
+        print('Termination Condition is =', results.solver.termination_condition)
 else:
     print('Feasibility Condition does not hold, total demand is ', Total_Demand, 'and Total Supply is ', Total_Supply)
     
